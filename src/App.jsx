@@ -18,7 +18,7 @@ function App() {
     console.log(userNum);
 
     // use Regular expressions: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions
-    // \d find a number, Matches any character that is not a digit (Arabic numeral).
+    // \D find a number, Matches any character that is not a digit (Arabic numeral).
     //  Equivalent to [^0-9]. For example, /\D/ or /[^0-9]/ matches "B" in "B2 is the suite number".
     // /g Global search
     // ["2","6","4",18,"4"] will be ["2","4","1","8","4"]
