@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import Results from "./components/Results";
 
 function App() {
   const [userInput, setUserInput] = useState(0);
@@ -17,27 +18,30 @@ function App() {
         userNum[i] = userNum[i].toString();
       }
     }
+    console.log(userNum);
+
     let number = [];
-    for (let i = 0; i < userNum.length; i++) {
+    userNum.forEach((num) => {
       let splitNum = [];
-      splitNum = userNum[i].split("");
+      splitNum = num.split("");
       number.push(...splitNum);
-    }
+    });
     console.log(number);
 
-    let ss = [];
-    for (let i = 0; i < number.length; i++) {
-      let numList = [];
-      numList = Number(number[i]);
-      ss.push(numList);
-    }
-    console.log(ss);
+    let numArray = number.map((num) => Number(num));
+    console.log(numArray);
 
-    const totalNum = ss.reduce(
+    const totalNum = numArray.reduce(
       (accumulator, currentValue) => accumulator + currentValue,
       0
     );
     console.log(totalNum);
+
+    if (totalNum % 10 == 0) {
+      return console.log(true);
+    } else {
+      return console.log(false);
+    }
   }
 
   return (
@@ -46,6 +50,7 @@ function App() {
       <form>
         <input type="number" onChange={handleChange} value={userInput} />
         <button onClick={checkCard}>check card</button>
+        <Results />
       </form>
     </>
   );
