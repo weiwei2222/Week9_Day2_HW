@@ -14,27 +14,21 @@ function App() {
     const userNum = userInput.split("");
     for (let i = userNum.length - 2; i >= 0; i -= 2) {
       userNum[i] = userNum[i] * 2;
-      for (let i = 0; i < userNum.length; i++) {
-        userNum[i] = userNum[i].toString();
-      }
     }
     console.log(userNum);
 
-    let number = [];
-    userNum.forEach((num) => {
-      let splitNum = [];
-      splitNum = num.split("");
-      number.push(...splitNum);
-    });
+    // use Regular expressions: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions
+    // \d find a number, Matches any character that is not a digit (Arabic numeral).
+    //  Equivalent to [^0-9]. For example, /\D/ or /[^0-9]/ matches "B" in "B2 is the suite number".
+    // /g Global search
+    // ["2","6","4",18,"4"] will be ["2","4","1","8","4"]
+    let number = (userNum + "").replace(/\D+/g, "").split("");
     console.log(number);
 
     let numArray = number.map((num) => Number(num));
     console.log(numArray);
 
-    const totalNum = numArray.reduce(
-      (accumulator, currentValue) => accumulator + currentValue,
-      0
-    );
+    const totalNum = numArray.reduce((acc, current) => acc + current, 0);
     console.log(totalNum);
 
     if (totalNum % 10 == 0) {
